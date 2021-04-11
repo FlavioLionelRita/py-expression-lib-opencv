@@ -6,7 +6,7 @@ with open('README.md') as f:
 setup(
   name = 'py-expression-lib-opencv',
   packages = ['py_expression_opencv'],
-  version = '0.0.2',
+  version = '0.0.3',
   description = 'lib opencv for expressions',
   long_description=long_description,
   long_description_content_type='text/markdown',  # This is important!

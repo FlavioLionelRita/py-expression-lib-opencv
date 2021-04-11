@@ -1,9 +1,9 @@
-from py_expression.core import Parser
+from py_expression.core import Exp
 import cv2 as cv
 import numpy as np  
 from os import path,getcwd
 
-def loadOpenCvExpressions(parser:Parser):
+def loadOpenCvExpressions(exp:Exp):
     cvtypes = {
         "uint8": cv.CV_8U,
         "uint16": cv.CV_16U,
@@ -12,14 +12,14 @@ def loadOpenCvExpressions(parser:Parser):
         "float32": cv.CV_32F,
         "float64": cv.CV_64F
     }
-    parser.addEnum('ColorConversion',{"BGR2GRAY":6,"BGR2HSV":40,"BGR2RGB":4,"GRAY2BGR":8
+    exp.addEnum('ColorConversion',{"BGR2GRAY":6,"BGR2HSV":40,"BGR2RGB":4,"GRAY2BGR":8
                                     ,"HSV2BGR":54,"HSV2RGB":55,"RGB2GRAY":7,"RGB2HSV":41})
-    parser.addEnum('BorderTypes',{"CONSTANT":0,"REPLICATE":1,"REFLECT":2,"WRAP":3
+    exp.addEnum('BorderTypes',{"CONSTANT":0,"REPLICATE":1,"REFLECT":2,"WRAP":3
                                 ,"REFLECT_101":4,"TRANSPARENT":5,"DEFAULT":4,"ISOLATED":16})
-    parser.addEnum('MorphTypes',{"ERODE":0,"DILATE":1,"OPEN":2,"CLOSE":3
+    exp.addEnum('MorphTypes',{"ERODE":0,"DILATE":1,"OPEN":2,"CLOSE":3
                                 ,"GRADIENT":4,"TOPHAT":5,"BLACKHAT":6,"HITMISS":7}) 
-    parser.addEnum('MorphShapes',{"RECT":0,"CROSS":1,"ELLIPSE":3}) 
-    parser.addEnum('RotateAngle',{"90":90,"180":180,"270":270}) 
+    exp.addEnum('MorphShapes',{"RECT":0,"CROSS":1,"ELLIPSE":3}) 
+    exp.addEnum('RotateAngle',{"90":90,"180":180,"270":270}) 
 
 
     def cvCanny(image,threshold1,threshold2):
@@ -117,29 +117,29 @@ def loadOpenCvExpressions(parser:Parser):
     # Pendings AverageOperator,MaxOperator,MinOperator,InvertOperator,ScalarMultiplyOperator,ScalarAddOperator 
 
 
-    parser.addFunction('cvImread',cv.imread)
-    parser.addFunction('cvImwrite',cv.imwrite)
-    parser.addFunction('cvtColor',cv.cvtColor)
-    parser.addFunction('cvCanny',cvCanny)
-    parser.addFunction('cvRotate',cvRotate)
-    parser.addFunction('cvResize',cvResize)
-    parser.addFunction('cvCrop',cvCrop)
-    parser.addFunction('cvBlur',cv.blur)
-    parser.addFunction('cvGaussianBlur',cv.GaussianBlur)
-    parser.addFunction('cvGaussianBlur3D',cvGaussianBlur3D)
-    parser.addFunction('cvInRange',cv.inRange)
-    parser.addFunction('cvColorNormalizer',cvColorNormalizer)
-    parser.addFunction('cvContrastChange',cvContrastChange)
-    parser.addFunction('cvMorphologyEx',cvMorphologyEx)
-    parser.addFunction('cvDilate',cvDilate)
-    parser.addFunction('cvErode',cvErode)
-    parser.addFunction('cvAdd',cvAdd)
-    parser.addFunction('cvAdds',cvAdds)
-    parser.addFunction('cvSubtract',cv.subtract)
-    parser.addFunction('cvAbsdiff',cv.absdiff)
-    parser.addFunction('cvVideoCapture',cvVideoCapture)
-    parser.addFunction('cvVideoRead',cvVideoRead)
-    parser.addFunction('cvVideoRelease',cvVideoRelease)
+    exp.addFunction('cvImread',cv.imread)
+    exp.addFunction('cvImwrite',cv.imwrite)
+    exp.addFunction('cvtColor',cv.cvtColor)
+    exp.addFunction('cvCanny',cvCanny)
+    exp.addFunction('cvRotate',cvRotate)
+    exp.addFunction('cvResize',cvResize)
+    exp.addFunction('cvCrop',cvCrop)
+    exp.addFunction('cvBlur',cv.blur)
+    exp.addFunction('cvGaussianBlur',cv.GaussianBlur)
+    exp.addFunction('cvGaussianBlur3D',cvGaussianBlur3D)
+    exp.addFunction('cvInRange',cv.inRange)
+    exp.addFunction('cvColorNormalizer',cvColorNormalizer)
+    exp.addFunction('cvContrastChange',cvContrastChange)
+    exp.addFunction('cvMorphologyEx',cvMorphologyEx)
+    exp.addFunction('cvDilate',cvDilate)
+    exp.addFunction('cvErode',cvErode)
+    exp.addFunction('cvAdd',cvAdd)
+    exp.addFunction('cvAdds',cvAdds)
+    exp.addFunction('cvSubtract',cv.subtract)
+    exp.addFunction('cvAbsdiff',cv.absdiff)
+    exp.addFunction('cvVideoCapture',cvVideoCapture)
+    exp.addFunction('cvVideoRead',cvVideoRead)
+    exp.addFunction('cvVideoRelease',cvVideoRelease)
 
     class Volume():
         def __init__(self,_path):        
@@ -148,8 +148,8 @@ def loadOpenCvExpressions(parser:Parser):
             return path.join(self._root,_path)
     def createVolume(_path):return Volume(_path)
 
-    parser.addFunction('Volume',createVolume)
-    parser.addFunction('pathRoot',getcwd)
-    parser.addFunction('pathJoin',path.join)
+    exp.addFunction('Volume',createVolume)
+    exp.addFunction('pathRoot',getcwd)
+    exp.addFunction('pathJoin',path.join)
 
-    parser.refresh()
+    exp.refresh()
