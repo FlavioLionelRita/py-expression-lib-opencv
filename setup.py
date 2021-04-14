@@ -6,12 +6,12 @@ with open('README.md') as f:
 setup(
   name = 'py-expression-lib-opencv',
   packages = ['py_expression_opencv'],
-  version = '0.0.3',
+  version = '0.0.4',
   description = 'lib opencv for expressions',
   long_description=long_description,
   long_description_content_type='text/markdown',  # This is important!
   url = 'https://github.com/FlavioLionelRita/py-expression-lib-opencv', # use the URL to the github repo
-  download_url = 'https://github.com/FlavioLionelRita/py-expression-lib-opencv/tarball/0.0.1',
+  download_url = 'https://github.com/FlavioLionelRita/py-expression-lib-opencv/tarball/0.0.4',
   keywords = ['opencv','lib', 'expression'],
   classifiers = [],
   author = 'Flavio Lionel Rita',
