@@ -1,7 +1,7 @@
 from py_expression.core import Exp
 import cv2 as cv
 import numpy as np  
-from os import path,getcwd
+
 
 def loadOpenCvExpressions(exp:Exp):
     cvtypes = {
@@ -141,15 +141,6 @@ def loadOpenCvExpressions(exp:Exp):
     exp.addFunction('cvVideoRead',cvVideoRead)
     exp.addFunction('cvVideoRelease',cvVideoRelease)
 
-    class Volume():
-        def __init__(self,_path):        
-            self._root = _path if path.isabs(_path) else path.join(getcwd(),_path) 
-        def fullpath(self,_path):
-            return path.join(self._root,_path)
-    def createVolume(_path):return Volume(_path)
-
-    exp.addFunction('Volume',createVolume)
-    exp.addFunction('pathRoot',getcwd)
-    exp.addFunction('pathJoin',path.join)
+    
 
     exp.refresh()
